@@ -1,22 +1,20 @@
-#include <assert.h>
-#include <iostream>
-using namespace std;
+@@ -1,11 +1,13 @@
 
-bool batteryIsOk(float temperature, float soc, float chargeRate) {
-  if(temperature < 0 || temperature > 45) {
-    cout << "Temperature out of range!\n";
-    return false;
-  } else if(soc < 20 || soc > 80) {
-    cout << "State of Charge out of range!\n";
-    return false;
-  } else if(chargeRate > 0.8) {
-    cout << "Charge Rate out of range!\n";
-    return false;
-  }
-  return true;
-}
+def is_within_limits(temperature, soc, charge_rate):
+  return 0 <= temperature <= 45 and 20 <= soc <= 80 and charge_rate <= 0.8
 
-int main() {
-  assert(batteryIsOk(25, 70, 0.7) == true);
-  assert(batteryIsOk(50, 85, 0) == false);
-}
+def battery_is_ok(temperature, soc, charge_rate):
+  if 0 <= temperature <= 45 and 20 <= soc <= 80 and charge_rate <= 0.8:
+  if is_within_limits(temperature, soc, charge_rate):
+    return True
+    print('Temperature, State of Charge and Charge Rate is out of range!')
+    return False
+  
+  print('Temperature, State of Charge and Charge Rate is out of range!')
+  return False
+
+if __name__ == '__main__':
+  assert(battery_is_ok(25, 70, 0.7) is True)
+  assert(battery_is_ok(50, 85, 0) is False)
+  assert battery_is_ok(25, 70, 0.7) is True
+  assert battery_is_ok(50, 85, 0) is False
